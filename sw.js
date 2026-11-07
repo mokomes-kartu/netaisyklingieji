@@ -1,6 +1,6 @@
 // Netaisyklingieji — veikimas be interneto.
 // Pakeitus žaidimą, padidink versijos numerį, kad telefonai gautų naują versiją.
-const VERSION = "v6";
+const VERSION = "v7";
 const CACHE = "netaisyklingieji-" + VERSION;
 const FONTS = "netaisyklingieji-fonts";
 const SHELL = [
@@ -30,12 +30,27 @@ self.addEventListener("fetch", event => {
   if (req.method !== "GET") return;
   const url = new URL(req.url);
 
-  // Žaidimo failai: rodoma išsaugota versija, o fone parsisiunčiama nauja.
+  // Pats žaidimas: kai yra internetas, imama naujausia versija; be interneto – išsaugota.
+  if (url.origin === self.location.origin && (req.mode === "navigate" || /\/(index\.html)?$/.test(url.pathname))) {
+    event.respondWith(
+      caches.open(CACHE).then(async cache => {
+        const hit = await cache.match(req, { ignoreSearch: true }) || await cache.match("./index.html");
+        const fresh = fetch(req, { cache: "no-cache" })
+          .then(res => { if (res.ok) cache.put(req, res.clone()); return res; });
+        if (!hit) return fresh;
+        const timeout = new Promise(res => setTimeout(() => res(hit), 3500));
+        return Promise.race([fresh.catch(() => hit), timeout]);
+      })
+    );
+    return;
+  }
+
+  // Kiti žaidimo failai (piktogramos ir pan.): rodoma išsaugota versija, o fone atnaujinama.
   if (url.origin === self.location.origin) {
     event.respondWith(
       caches.open(CACHE).then(async cache => {
         const hit = await cache.match(req, { ignoreSearch: true });
-        const fresh = fetch(req)
+        const fresh = fetch(req, { cache: "no-cache" })
           .then(res => { if (res.ok) cache.put(req, res.clone()); return res; })
           .catch(() => hit);
         return hit || fresh;
