@@ -113,15 +113,16 @@ legend{font-family:var(--f-display);font-weight:800;font-size:21px;padding:0;mar
 .opt input:checked + .box{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
 .opt input:checked + .box .s{color:inherit;opacity:.85}
 .opt input:focus-visible + .box{outline:3px solid var(--accent);outline-offset:3px}
+.forms3 .wide{grid-column:1/-1}
+.forms3 .wide .box{flex-direction:row;align-items:center;gap:12px}
+.forms3 .wide svg{width:26px;height:26px;flex:none}
+.forms3 .wide .txt{display:flex;flex-direction:column;gap:2px;min-width:0}
 .abc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .abc .s{font-size:12px}
 .hint{font-size:13px;color:var(--ink-soft);margin:8px 2px 0}
-.sublegend{font-family:var(--f-display);font-weight:800;font-size:16px;margin:16px 0 8px}
-.groups{display:grid;gap:8px}
-.groups .box{flex-direction:row;align-items:center;justify-content:space-between;gap:12px}
-.groups .n{font-family:var(--f-display);font-weight:800;font-size:19px;font-variant-numeric:tabular-nums}
 .start-actions{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
-.start-actions .cta{width:100%}
+.start-actions .cta,.start-actions .ghost{width:100%}
+.start-actions .ghost{margin:10px 0 4px}
 
 /* buttons */
 .cta,.ghost{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:56px;padding:0 24px;border:2px solid var(--edge);border-radius:14px;font-family:var(--f-display);font-weight:800;cursor:pointer;box-shadow:0 4px 0 var(--edge);transition:transform .08s,box-shadow .08s}
@@ -175,6 +176,24 @@ legend{font-family:var(--f-display);font-weight:800;font-size:21px;padding:0;mar
 @keyframes pop{0%{transform:rotate(-1.5deg) scale(.6);opacity:0}70%{transform:rotate(-1.5deg) scale(1.08)}100%{transform:rotate(-1.5deg) scale(1);opacity:1}}
 .line.asked .w.hl{animation:pop .35s ease-out}
 
+/* play: typing level – three fields, each marked on its own */
+.typing .card-top{padding:10px 16px 8px}
+.typing .pic{font-size:46px}
+.line.type{grid-template-columns:5.6em minmax(0,1fr) 1.2em;padding:7px 0}
+.cell{display:grid;gap:5px;min-width:0}
+.inp{width:100%;min-height:46px;padding:0 10px;border:2px solid var(--edge);border-radius:10px;background:var(--paper);color:var(--ink);font-family:var(--f-display);font-weight:800;font-size:22px;line-height:1.1;-webkit-appearance:none;appearance:none}
+.inp::placeholder{font-family:var(--f-body);font-weight:700;font-size:15px;color:var(--ink-soft);opacity:1}
+.inp.ok{border-color:var(--ok);background:var(--ok-bg)}
+.inp.bad{border-color:var(--bad);background:var(--bad-bg);text-decoration:line-through;text-decoration-thickness:2px;animation:shake .38s}
+.fix{display:block;min-width:0}
+.fix .w{font-size:22px;animation:pop .35s ease-out}
+.fix .alt{font-size:13px;font-weight:700;color:var(--ink-soft);line-height:1.3}
+.fix .alt b{color:var(--ink)}
+.mark.yes{color:var(--ok)}
+.mark.no{color:var(--bad);font-size:30px}
+.answers .cta{width:100%}
+@media (max-width:360px){.inp{font-size:17px;padding:0 8px}.fix .w{font-size:20px}}
+
 /* result */
 .grade-row{display:flex;align-items:center;gap:16px;margin:6px 0 4px}
 .grade-wrap{position:relative;width:150px;height:122px;flex:none;display:grid;place-items:center}
@@ -186,6 +205,7 @@ legend{font-family:var(--f-display);font-weight:800;font-size:21px;padding:0;mar
 .g-label{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin:0}
 .g-sub{font-family:var(--f-display);font-weight:800;font-size:24px;margin:2px 0}
 .g-note{font-family:var(--f-pen);font-weight:700;font-size:31px;color:var(--pen);margin:0;line-height:1.1}
+.g-forms{font-size:14px;font-weight:700;color:var(--ink-soft);margin:0 0 2px}
 h2{font-family:var(--f-display);font-weight:800;font-size:26px;margin:0}
 .sheet{padding:14px 16px 4px;margin-top:22px}
 .sheet h2{font-size:21px;padding-bottom:8px;border-bottom:2px solid var(--pen)}
@@ -253,6 +273,34 @@ h2{font-family:var(--f-display);font-weight:800;font-size:26px;margin:0}
 .toast button{flex:none;background:none;border:0;color:inherit;font-size:26px;line-height:1;cursor:pointer;padding:4px 6px}
 .back{margin-bottom:6px}
 
+/* learn: groups by matching forms, shown as tables */
+.learn-lead{font-size:17px;margin:8px 0 16px}
+.lgroups{display:grid;gap:14px}
+.lgroup > summary{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;list-style:none}
+.lgroup > summary::-webkit-details-marker{display:none}
+.lgroup > summary:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+.lg-t{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.lg-t b{font-family:var(--f-display);font-weight:800;font-size:20px;line-height:1.15;overflow-wrap:anywhere}
+.lg-t small{font-size:14px;color:var(--ink-soft);font-weight:700;line-height:1.25}
+.lg-n{flex:none;text-align:center;line-height:1}
+.lg-n b{display:block;font-family:var(--f-display);font-weight:800;font-size:26px;font-variant-numeric:tabular-nums}
+.lg-n span{font-size:12px;font-weight:700;color:var(--ink-soft)}
+.lg-chev{flex:none;width:20px;height:20px;transition:transform .15s}
+.lgroup[open] .lg-chev{transform:rotate(180deg)}
+.lgroup[open] > summary{border-bottom:2px solid var(--pen)}
+.lg-b{padding:14px 16px 6px}
+.tip{margin:0 0 10px;font-size:16px}
+.tip-k{display:block;font-family:var(--f-pen);font-weight:700;font-size:25px;line-height:1.1;color:var(--pen);margin-bottom:2px}
+.fam{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:6px}
+.fam li{padding:8px 10px;border:1.5px dashed var(--accent);border-radius:8px;font-size:15px;line-height:1.35}
+.fam b{font-family:var(--f-display);font-weight:800;margin-right:6px;white-space:nowrap}
+.ltab{width:100%;border-collapse:collapse;table-layout:fixed}
+.ltab th{font-size:12px;font-weight:800;color:var(--ink-soft);text-align:left;padding:6px 6px 6px 0;border-bottom:1.5px solid var(--rule);line-height:1.2}
+.ltab td{font-family:var(--f-display);font-weight:800;font-size:clamp(15px,4.5vw,19px);line-height:1.2;padding:9px 6px 0 0;overflow-wrap:anywhere;vertical-align:top}
+.ltab tr.m td{font-family:var(--f-body);font-weight:500;font-size:14px;color:var(--ink-soft);padding:2px 0 9px;border-bottom:1.5px solid var(--rule)}
+.ltab tbody tr.m:last-child td{border-bottom:0}
+.ltab .e{font-family:var(--f-emoji);margin-right:6px}
+
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
@@ -280,7 +328,7 @@ h2{font-family:var(--f-display);font-weight:800;font-size:26px;margin:0}
     <div class="hero">
       <p class="eyebrow">Anglų kalba · būtasis laikas ir dalyvis</p>
       <h1><span class="ne">Ne</span>taisyklingieji</h1>
-      <p class="lead">Pažiūrėk į paveikslėlį ir pasirink teisingą veiksmažodžio formą. Vienas raundas – 10 klausimų.</p>
+      <p class="lead">Pažiūrėk į paveikslėlį ir pasirink teisingą veiksmažodžio formą arba įrašyk visas tris pats. Vienas raundas – 10 klausimų.</p>
     </div>
     <div class="demo-wrap">
       <div class="card demo" aria-hidden="true">
@@ -295,12 +343,17 @@ h2{font-family:var(--f-display);font-weight:800;font-size:26px;margin:0}
 
     <div class="settings">
       <fieldset>
-        <legend>Kurią formą spėsi?</legend>
+        <legend>Pasirink lygį</legend>
         <div class="forms3">
           <label class="opt"><input type="radio" name="form" id="f-past" value="past" checked><span class="box"><span class="t">2 forma</span><span class="s">būtasis laikas</span></span></label>
           <label class="opt"><input type="radio" name="form" id="f-part" value="part"><span class="box"><span class="t">3 forma</span><span class="s">dalyvis</span></span></label>
           <label class="opt"><input type="radio" name="form" id="f-both" value="both"><span class="box"><span class="t">Abi</span><span class="s">sumaišytos</span></span></label>
+          <label class="opt wide"><input type="radio" name="form" id="f-type" value="type"><span class="box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></svg>
+            <span class="txt"><span class="t">Įrašyk visas formas</span><span class="s">matai lietuvišką žodį – pats parašai visas tris</span></span>
+          </span></label>
         </div>
+        <p class="hint">Pirmi trys lygiai – su atsakymų variantais, ketvirtas – be jų.</p>
       </fieldset>
       <fieldset>
         <legend>Kuriuos žodžius?</legend>
@@ -313,15 +366,13 @@ h2{font-family:var(--f-display);font-weight:800;font-size:26px;margin:0}
           <label class="opt"><input type="radio" name="group" id="g-g5" value="g5"><span class="box"><span class="t">5 grupė</span><span class="s" data-range="g5"></span></span></label>
         </div>
         <p class="hint">Grupės po 20 žodžių sudarytos pagal anglišką abėcėlę, kaip lentelėje.</p>
-        <p class="sublegend">Arba pagal formų panašumą</p>
-        <div class="groups">
-          <label class="opt"><input type="radio" name="group" id="g-same" value="same"><span class="box"><span><span class="t">cut – cut – cut</span><span class="s">visos trys formos vienodos</span></span><span class="n" data-count="same"></span></span></label>
-          <label class="opt"><input type="radio" name="group" id="g-two" value="two"><span class="box"><span><span class="t">buy – bought – bought</span><span class="s">2 ir 3 forma vienodos</span></span><span class="n" data-count="two"></span></span></label>
-          <label class="opt"><input type="radio" name="group" id="g-diff" value="diff"><span class="box"><span><span class="t">sing – sang – sung</span><span class="s">2 ir 3 forma skiriasi</span></span><span class="n" data-count="diff"></span></span></label>
-        </div>
       </fieldset>
       <div class="start-actions">
         <button class="cta" id="startBtn" type="button">Pradėti</button>
+        <button class="ghost" id="learnBtn" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6.5C10 5 7 4.5 3 5v13c4-.5 7 0 9 1.5 2-1.5 5-2 9-1.5V5c-4-.5-7 0-9 1.5z"/><path d="M12 6.5V19.5"/></svg>
+          <span>Noriu pasimokyti</span>
+        </button>
         <button class="link" id="listBtn" type="button">Žodynėlis – visi veiksmažodžiai su paveikslėliais</button>
         <button class="link" id="statsBtn" type="button">Mano statistika</button>
       </div>
@@ -359,6 +410,7 @@ h2{font-family:var(--f-display);font-weight:800;font-size:26px;margin:0}
       <div>
         <p class="g-label">Pažymys</p>
         <p class="g-sub" id="gSub"></p>
+        <p class="g-forms" id="gForms" hidden></p>
         <p class="g-note" id="gNote"></p>
       </div>
     </div>
@@ -396,6 +448,18 @@ h2{font-family:var(--f-display);font-weight:800;font-size:26px;margin:0}
     </div>
     <div class="card"><ul class="vlist" id="vlist"></ul></div>
     <p class="credits">Tarimo įrašai – iš <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener">Wikimedia Commons</a> ir <a href="https://en.wiktionary.org/" target="_blank" rel="noopener">Wiktionary</a>. Kalbėtojai: Dvortygirl, Vealhurl, Neskaya, Persent101, Tawker, Sylvanmoon, Pvanp7, Whitecane17, Mx. Granger, TreeMama. Licencijos: <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.lt" target="_blank" rel="noopener">CC BY-SA 3.0</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.lt" target="_blank" rel="noopener">CC BY-SA 4.0</a>, CC0 ir viešasis domenas. Įrašai apkarpyti, suvienodintas jų garsumas ir sušvelnintas tembras, o šio rinkinio įrašai platinami pagal CC BY-SA 4.0. Žodžio „forbade“ įrašo neradome, todėl jis sintezuotas.</p>
+  </section>
+
+  <!-- LEARN -->
+  <section class="screen narrow" id="sLearn" hidden>
+    <button class="link back" id="learnBack" type="button">← Atgal</button>
+    <h2>Noriu pasimokyti</h2>
+    <p class="learn-lead" id="learnLead"></p>
+    <div class="lgroups" id="learnBody"></div>
+    <div class="res-actions">
+      <button class="cta" id="learnPlay" type="button">Žaisti</button>
+      <button class="ghost" id="learnList" type="button">Žodynėlis</button>
+    </div>
   </section>
 
   <!-- STATS -->
@@ -599,6 +663,85 @@ function makeOptions(v, kind){
   return shuffle([correct, ...picked]);
 }
 function gradeOf(correct, total){ return Math.max(1, Math.round(correct / total * 10)); }
+
+// --- Typing level: the pupil writes all three forms ---
+// Other correct spellings that are accepted when typed (the pupils' sheet lists only the first one).
+const ALT = {
+  burn:{ past:["burned"], part:["burned"] },
+  get:{ part:["gotten"] },
+  forbid:{ past:["forbad"] },
+  show:{ part:["showed"] },
+  broadcast:{ past:["broadcasted"], part:["broadcasted"] }
+};
+const FORM_KEYS = ["base","past","part"];
+function norm(s){ return String(s == null ? "" : s).toLowerCase().replace(/[^a-z]+/g, " ").trim(); }
+function checkForm(v, kind, typed){
+  const t = norm(typed);
+  if(!t) return { ok:false, alt:false };
+  const main = norm(v[kind]);
+  if(t === main) return { ok:true, alt:false };
+  if(main.includes(" ")){ // "was / were": both words, any order, any separator
+    const filler = new Set(["and","or","ir","arba"]);
+    const got = t.split(" ").filter(w => !filler.has(w)).sort().join(" ");
+    if(got === main.split(" ").sort().join(" ")) return { ok:true, alt:false };
+  }
+  const alts = (ALT[v.base] && ALT[v.base][kind]) || [];
+  return alts.includes(t) ? { ok:true, alt:true } : { ok:false, alt:false };
+}
+// Two verbs share the same Lithuanian meaning on the sheet (beat / strike): either one is a right answer.
+function twinFor(v, typedBase){
+  const t = norm(typedBase);
+  return VERBS.find(x => x !== v && x.lt === v.lt && x.base === t) || null;
+}
+function checkTyped(v, typed){
+  const target = twinFor(v, typed.base) || v;
+  const res = {};
+  FORM_KEYS.forEach(k => { res[k] = checkForm(target, k, typed[k]); });
+  return { v: target, res, ok: FORM_KEYS.every(k => res[k].ok) };
+}
+
+// --- "Noriu pasimokyti": the verbs grouped by which forms match ---
+function shapeOf(v){
+  if(v.base === v.past && v.past === v.part) return "same";
+  if(v.past === v.part) return "two";
+  if(v.base === v.part || v.base === v.past) return "odd";
+  return "diff";
+}
+VERBS.forEach(v => { v.shape = shapeOf(v); });
+function wordsLt(n){
+  const d = n % 10, h = n % 100;
+  if(d === 1 && h !== 11) return "žodis";
+  if(d >= 2 && (h < 10 || h >= 20)) return "žodžiai";
+  return "žodžių";
+}
+// Texts of the learning section (kept apart from the code so they are easy to edit or translate).
+const LEARN = [
+  { id:"same", ex:"cut – cut – cut", name:"Visos trys formos vienodos",
+    tip:"Lengviausia grupė: išmoksti vieną žodį – moki visas tris formas. Visi šie žodžiai baigiasi raide t arba d. Atsargiai su read: rašoma vienodai, bet 2 ir 3 forma tariama kaip „red“.",
+    fam:[] },
+  { id:"two", ex:"buy – bought – bought", name:"2 ir 3 forma vienodos",
+    tip:"Didžiausia grupė. Užtenka išmokti 2 formą – 3 forma tokia pati. Mokykis šeimomis, kurios skamba panašiai:",
+    fam:[
+      ["-ought, -aught","bring – brought, buy – bought, fight – fought, think – thought, catch – caught, teach – taught"],
+      ["d → t","bend – bent, lend – lent, send – sent, spend – spent, build – built"],
+      ["ee, ea → e","keep – kept, sleep – slept, weep – wept, feel – felt, deal – dealt, mean – meant, leave – left, feed – fed, meet – met, lead – led"],
+      ["-ay → -aid","lay – laid, pay – paid, say – said"],
+      ["-ell → -old","sell – sold, tell – told"],
+      ["i → u","dig – dug, stick – stuck, strike – struck"]
+    ] },
+  { id:"odd", ex:"come – came – come", name:"Vienodos 1 ir 3 forma",
+    tip:"Tik keturi žodžiai. come, become ir run trečioje formoje grįžta į pradžią. Vienas keistuolis – beat: jo vienodos 1 ir 2 forma, o keičiasi tik trečioji (beaten).",
+    fam:[] },
+  { id:"diff", ex:"go – went – gone", name:"Visos trys formos skirtingos",
+    tip:"Čia reikia išmokti visas tris formas, bet ir šie žodžiai turi šeimų:",
+    fam:[
+      ["i – a – u","begin – began – begun, drink – drank – drunk, sing – sang – sung, swim – swam – swum"],
+      ["-ew, -own","blow – blew – blown, grow – grew – grown, know – knew – known, throw – threw – thrown, fly – flew – flown"],
+      ["2 forma + n","break – broke – broken, speak – spoke – spoken, steal – stole – stolen, choose – chose – chosen, freeze – froze – frozen, wake – woke – woken"],
+      ["-ore, -orn","wear – wore – worn, tear – tore – torn, swear – swore – sworn"],
+      ["i – o – i + en","write – wrote – written, ride – rode – ridden, drive – drove – driven, rise – rose – risen"]
+    ] }
+];
 /*LOGIC-END*/
 
 // --- UI ---
@@ -874,13 +1017,23 @@ function gradeOf(correct, total){ return Math.max(1, Math.round(correct / total 
   }
 
   /* ---------- Screens ---------- */
-  const SCREENS = ["sStart","sPlay","sResult","sList","sStats"];
-  function show(id){ SCREENS.forEach(s => { $(s).hidden = s !== id; }); window.scrollTo(0, 0); }
+  const SCREENS = ["sStart","sPlay","sResult","sList","sLearn","sStats"];
+  function show(id){
+    clearTimeout(state.sayTimer);
+    if(id !== "sPlay") Pron.stop();
+    SCREENS.forEach(s => { $(s).hidden = s !== id; });
+    window.scrollTo(0, 0);
+  }
 
   /* ---------- Game ---------- */
-  function kindFor(){ const f = state.settings.form; return f === "both" ? (Math.random() < .5 ? "past" : "part") : f; }
+  // kind "all" = typing level: the pupil writes all three forms.
+  function kindFor(){
+    const f = state.settings.form;
+    if(f === "type") return "all";
+    return f === "both" ? (Math.random() < .5 ? "past" : "part") : f;
+  }
   function beginRound(items, source){
-    state.round = items.map(({ v, kind }) => ({ v, kind, options: makeOptions(v, kind) }));
+    state.round = items.map(({ v, kind }) => ({ v, kind, options: kind === "all" ? [] : makeOptions(v, kind) }));
     state.idx = 0; state.results = []; state.source = source;
     show("sPlay"); renderQuestion();
   }
@@ -911,18 +1064,97 @@ function gradeOf(correct, total){ return Math.max(1, Math.round(correct / total 
   function renderQuestion(){
     const it = state.round[state.idx];
     state.answered = false;
+    state.blankWarned = false;
     $("qCount").textContent = `${state.idx + 1} iš ${state.round.length}`;
     renderBoxes();
     $("qPic").textContent = it.v.pic;
     $("qLt").textContent = it.v.lt;
-    renderLines(it, false, false);
+    $("sPlay").classList.toggle("typing", it.kind === "all");
+    $("answers").hidden = false;
+    $("after").hidden = true;
     const ask = $("ask");
     ask.className = "ask";
+    if(it.kind === "all"){ renderTyping(); return; }
+    renderLines(it, false, false);
     ask.textContent = it.kind === "past" ? "Kokia būtojo laiko forma?" : "Koks būtojo laiko dalyvis?";
     $("answers").innerHTML = it.options.map((w, i) =>
       `<button class="ans" type="button" id="ans${i}" data-i="${i}"><span class="k">${"ABC"[i]}</span><span class="t">${esc(w)}</span></button>`
     ).join("");
-    $("after").hidden = true;
+  }
+
+  /* ---------- Typing level ---------- */
+  const typeInputs = () => [...$("qLines").querySelectorAll(".inp")];
+  function renderTyping(){
+    // No English is shown and nothing is pronounced before the answer, so nothing gives it away.
+    // The keyboard's own key moves to the next field; autocorrect is off so it cannot change the words.
+    $("qLines").innerHTML = LINES.map(([k, n, label], i) =>
+      `<li class="line type"><label class="lab" for="in-${k}"><b>${n}</b> ${label}</label>`
+      + `<span class="cell"><input class="inp" id="in-${k}" data-k="${k}" type="text" inputmode="text" lang="en" `
+      + `autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="${i < 2 ? "next" : "done"}">`
+      + `<span class="fix" hidden></span></span><span class="mark" aria-hidden="true"></span></li>`
+    ).join("");
+    $("ask").textContent = "Įrašyk visas tris formas angliškai.";
+    $("answers").innerHTML = `<button class="cta" id="checkBtn" type="button">Tikrinti</button>`;
+    try { typeInputs()[0].focus(); } catch(e){}
+  }
+  function checkTypedAnswer(){
+    if(state.answered) return;
+    const it = state.round[state.idx];
+    if(!it || it.kind !== "all") return;
+    const ins = typeInputs();
+    if(ins.length !== 3) return;
+    const typed = {};
+    ins.forEach(inp => { typed[inp.dataset.k] = inp.value.trim(); });
+    const ask = $("ask");
+    if(!FORM_KEYS.some(k => norm(typed[k])) && !state.blankWarned){
+      state.blankWarned = true;
+      ask.textContent = "Dar nieko neįrašei. Jei nežinai – spausk „Tikrinti“ dar kartą ir parodysiu atsakymą.";
+      try { ins[0].focus(); } catch(e){}
+      return;
+    }
+    state.answered = true;
+    state.lockUntil = Date.now() + 350;
+    const out = checkTyped(it.v, typed);
+    it.v = out.v; // beat / strike: the verb the pupil actually wrote
+    $("qPic").textContent = it.v.pic;
+    ins.forEach(inp => {
+      const k = inp.dataset.k, r = out.res[k], li = inp.closest(".line");
+      inp.readOnly = true;
+      inp.classList.add(r.ok ? "ok" : "bad");
+      inp.setAttribute("aria-invalid", String(!r.ok));
+      if(!inp.value.trim()){ inp.value = ""; inp.placeholder = "neįrašyta"; }
+      const mark = li.querySelector(".mark");
+      mark.textContent = r.ok ? "✓" : "✗";
+      mark.classList.add(r.ok ? "yes" : "no");
+      const fix = li.querySelector(".fix");
+      if(!r.ok){ fix.innerHTML = `<span class="w hl">${esc(it.v[k])}</span>`; fix.hidden = false; }
+      else if(r.alt){ fix.innerHTML = `<span class="alt">Tinka ir taip. Lentelėje – <b>${esc(it.v[k])}</b></span>`; fix.hidden = false; }
+    });
+    state.results.push({ it, typed, res: out.res, ok: out.ok });
+    Stats.answer(it.v.base, out.ok);
+    ask.className = "ask pen";
+    ask.textContent = out.ok ? pick(PRAISE) : "Beveik! Pažiūrėk, kur pataisyta.";
+    if(state.settings.sfx){
+      out.ok ? Snd.good() : Snd.bad();
+      // The pronunciation is heard only now, after the answer.
+      clearTimeout(state.sayTimer);
+      state.sayTimer = setTimeout(() => Pron.play(it.v), 750);
+    }
+    renderBoxes();
+    $("answers").hidden = true;
+    $("after").hidden = false;
+    $("nextBtn").textContent = state.idx === state.round.length - 1 ? "Rezultatas" : "Toliau";
+    try { $("nextBtn").focus({ preventScroll:true }); } catch(e){}
+    $("after").scrollIntoView({ block:"nearest", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  }
+  function typeKey(e){
+    const inp = e.target.closest && e.target.closest(".inp");
+    if(!inp || !(e.key === "Enter" || e.keyCode === 13)) return;
+    e.preventDefault(); e.stopPropagation();
+    if(state.answered || e.repeat) return;
+    const ins = typeInputs(), i = ins.indexOf(inp);
+    if(i > -1 && i < ins.length - 1) ins[i + 1].focus();
+    else checkTypedAnswer();
   }
   function choose(i){
     if(state.answered) return;
@@ -949,7 +1181,8 @@ function gradeOf(correct, total){ return Math.max(1, Math.round(correct / total 
     $("after").scrollIntoView({ block:"nearest", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
   }
   function next(){
-    if(!state.answered) return;
+    if(!state.answered || Date.now() < (state.lockUntil || 0)) return;
+    clearTimeout(state.sayTimer);
     Pron.stop();
     if(TTS.ok) try { speechSynthesis.cancel(); } catch(e){}
     if(state.idx < state.round.length - 1){ state.idx++; renderQuestion(); }
@@ -963,8 +1196,12 @@ function gradeOf(correct, total){ return Math.max(1, Math.round(correct / total 
     if(g >= 6) return "Neblogai, dar pasistenk!";
     return "Pakartok ir pavyks!";
   }
-  function formsHtml(v, kind){
-    return ["base","past","part"].map(k => k === kind ? `<span class="hl">${esc(v[k])}</span>` : esc(v[k])).join(" – ");
+  function formsHtml(v, kind, res){
+    return FORM_KEYS.map(k => (res ? !res[k].ok : k === kind) ? `<span class="hl">${esc(v[k])}</span>` : esc(v[k])).join(" – ");
+  }
+  function yourHtml(r){
+    if(!r.typed) return `<s>${esc(r.chosen)}</s>`;
+    return FORM_KEYS.map(k => r.res[k].ok ? esc(r.typed[k]) : `<s>${esc(r.typed[k] || "…")}</s>`).join(" – ");
   }
   function showResult(){
     const total = state.results.length, right = state.results.filter(r => r.ok).length;
@@ -972,10 +1209,14 @@ function gradeOf(correct, total){ return Math.max(1, Math.round(correct / total 
     $("gNum").textContent = g;
     $("gSub").textContent = `${right} iš ${total} teisingai`;
     $("gNote").textContent = noteFor(g);
-    Stats.round({ t: Date.now(), g: state.source || "all", right, total, grade: g });
+    const typedRes = state.results.filter(r => r.typed);
+    const formsOk = typedRes.reduce((s, r) => s + FORM_KEYS.filter(k => r.res[k].ok).length, 0);
+    $("gForms").hidden = !typedRes.length;
+    $("gForms").textContent = typedRes.length ? `Teisingų formų: ${formsOk} iš ${typedRes.length * 3}` : "";
+    Stats.round({ t: Date.now(), g: state.source || "all", right, total, grade: g, w: typedRes.length ? 1 : 0 });
     const miss = state.results.filter(r => !r.ok);
     $("missList").innerHTML = miss.length
-      ? miss.map(r => `<li><span class="mpic">${r.it.v.pic}</span><span><span class="mforms">${formsHtml(r.it.v, r.it.kind)}</span><br><span class="mlt">${esc(r.it.v.lt)}</span><br><span class="myour">tavo atsakymas: <s>${esc(r.chosen)}</s></span></span></li>`).join("")
+      ? miss.map(r => `<li><span class="mpic">${r.it.v.pic}</span><span><span class="mforms">${formsHtml(r.it.v, r.it.kind, r.res)}</span><br><span class="mlt">${esc(r.it.v.lt)}</span><br><span class="myour">tavo atsakymas: ${yourHtml(r)}</span></span></li>`).join("")
       : `<li style="display:block"><p class="clean">Nė vienos klaidos – visi atsakymai teisingi!</p></li>`;
     $("retryBtn").hidden = miss.length === 0;
     show("sResult");
@@ -1012,7 +1253,7 @@ function gradeOf(correct, total){ return Math.max(1, Math.round(correct / total 
     const last = rounds.slice(-12);
     $("gradeBars").innerHTML = last.length ? last.map(r => {
       const cls = r.grade >= 8 ? "hi" : r.grade <= 4 ? "lo" : "";
-      return `<div class="bar" title="${esc(SOURCE_NAME[r.g] || "")}"><em>${r.grade}</em><i class="${cls}" style="height:calc((100% - 24px) * ${r.grade / 10})"></i></div>`;
+      return `<div class="bar" title="${esc((SOURCE_NAME[r.g] || "") + (r.w ? " · rašymas" : ""))}"><em>${r.grade}</em><i class="${cls}" style="height:calc((100% - 24px) * ${r.grade / 10})"></i></div>`;
     }).join("") : "";
     $("barsNote").textContent = last.length ? `Paskutiniai ${last.length} raundai, nuo seniausio iki naujausio.` : "Užbaik bent vieną raundą, kad matytum pažymius.";
 
@@ -1042,6 +1283,30 @@ function gradeOf(correct, total){ return Math.max(1, Math.round(correct / total 
     if(on) resetTimer = setTimeout(() => resetArmed(false), 4000);
   }
   function openStats(){ renderStats(); show("sStats"); }
+
+  /* ---------- "Noriu pasimokyti" ---------- */
+  const CHEV = '<svg class="lg-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+  function renderLearn(){
+    $("learnLead").textContent = `Visi ${VERBS.length} veiksmažodžių suskirstyti pagal tai, kurios formos sutampa. Pradėk nuo lengviausios grupės.`;
+    $("learnBody").innerHTML = LEARN.map((g, gi) => {
+      const items = ABC_ORDER.filter(v => v.shape === g.id);
+      const cell = (v, k) => {
+        const twin = FORM_KEYS.some(o => o !== k && v[o] === v[k]) && g.id !== "same";
+        return `<td>${twin ? `<span class="hl">${esc(v[k])}</span>` : esc(v[k])}</td>`;
+      };
+      const rows = items.map(v =>
+        `<tr>${FORM_KEYS.map(k => cell(v, k)).join("")}</tr><tr class="m"><td colspan="3"><span class="e" aria-hidden="true">${v.pic}</span>${esc(v.lt)}</td></tr>`
+      ).join("");
+      const fam = g.fam.length ? `<ul class="fam">${g.fam.map(([k, t]) => `<li><b>${esc(k)}</b>${esc(t)}</li>`).join("")}</ul>` : "";
+      return `<details class="card lgroup"${gi === 0 ? " open" : ""}>`
+        + `<summary><span class="lg-t"><b>${esc(g.ex)}</b><small>${esc(g.name)}</small></span>`
+        + `<span class="lg-n"><b>${items.length}</b><span>${wordsLt(items.length)}</span></span>${CHEV}</summary>`
+        + `<div class="lg-b"><p class="tip"><span class="tip-k">Kaip įsiminti?</span>${esc(g.tip)}</p>${fam}`
+        + `<table class="ltab"><thead><tr><th scope="col">1 · bendratis</th><th scope="col">2 · būtasis laikas</th><th scope="col">3 · dalyvis</th></tr></thead><tbody>${rows}</tbody></table></div></details>`;
+    }).join("");
+  }
+  function openLearn(){ if(!$("learnBody").children.length) renderLearn(); show("sLearn"); }
+  function openList(){ renderList(); show("sList"); }
 
   /* ---------- Word list ---------- */
   function renderList(){
@@ -1081,7 +1346,16 @@ function gradeOf(correct, total){ return Math.max(1, Math.round(correct / total 
       if(state.settings.music) Snd.start();
       newRound();
     });
-    $("answers").addEventListener("click", e => { const b = e.target.closest(".ans"); if(b) choose(+b.dataset.i); });
+    $("answers").addEventListener("click", e => {
+      const b = e.target.closest(".ans");
+      if(b) choose(+b.dataset.i);
+      else if(e.target.closest("#checkBtn")) checkTypedAnswer();
+    });
+    $("qLines").addEventListener("keydown", typeKey);
+    $("learnBtn").addEventListener("click", openLearn);
+    $("learnBack").addEventListener("click", () => show("sStart"));
+    $("learnList").addEventListener("click", openList);
+    $("learnPlay").addEventListener("click", () => { Snd.init(); if(state.settings.music) Snd.start(); newRound(); });
     $("nextBtn").addEventListener("click", next);
     $("sayBtn").addEventListener("click", () => { const it = state.round[state.idx]; if(it) Pron.play(it.v); });
     $("statsBtn").addEventListener("click", openStats);
@@ -1102,7 +1376,7 @@ function gradeOf(correct, total){ return Math.max(1, Math.round(correct / total 
     $("againBtn").addEventListener("click", newRound);
     $("toStartBtn").addEventListener("click", () => show("sStart"));
     $("homeBtn").addEventListener("click", () => show("sStart"));
-    $("listBtn").addEventListener("click", () => { renderList(); show("sList"); });
+    $("listBtn").addEventListener("click", openList);
     $("backBtn").addEventListener("click", () => show("sStart"));
     $("search").addEventListener("input", renderList);
     $("toastClose").addEventListener("click", () => { $("toast").hidden = true; });
@@ -1118,8 +1392,10 @@ function gradeOf(correct, total){ return Math.max(1, Math.round(correct / total 
     });
     document.addEventListener("keydown", e => {
       if($("sPlay").hidden || e.metaKey || e.ctrlKey || e.altKey) return;
-      const k = e.key.toLowerCase();
+      const k = (e.key || "").toLowerCase();
       const map = { "1":0, "2":1, "3":2, a:0, b:1, c:2 };
+      const it = state.round[state.idx];
+      if(!state.answered && it && it.kind === "all") return; // typing level: the letters go into the fields
       if(!state.answered && k in map){ e.preventDefault(); choose(map[k]); }
       else if(state.answered && (k === "enter" || k === "arrowright") && !(document.activeElement && document.activeElement.tagName === "BUTTON")){ e.preventDefault(); next(); }
     });
@@ -1129,6 +1405,9 @@ function gradeOf(correct, total){ return Math.max(1, Math.round(correct / total 
     load();
     Stats.load();
     if(data && data.settings) Object.assign(state.settings, data.settings);
+    // The groups by matching forms moved to "Noriu pasimokyti"; an old saved choice falls back to all words.
+    if(!/^(all|g[1-5])$/.test(state.settings.group)) state.settings.group = "all";
+    if(!/^(past|part|both|type)$/.test(state.settings.form)) state.settings.form = "past";
     initUI();
   }
   const hot = window.claude && window.claude.hot;

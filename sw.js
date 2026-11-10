@@ -1,6 +1,6 @@
 // Netaisyklingieji — veikimas be interneto.
 // Pakeitus žaidimą, padidink versijos numerį, kad telefonai gautų naują versiją.
-const VERSION = "v7";
+const VERSION = "v8";
 const CACHE = "netaisyklingieji-" + VERSION;
 const FONTS = "netaisyklingieji-fonts";
 const SHELL = [
